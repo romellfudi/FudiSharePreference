@@ -32,8 +32,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
-    implementation group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.7.7'
-    implementation project(':fudi-store')
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.7.7'
+    compile project(':fudi-store')
 }
