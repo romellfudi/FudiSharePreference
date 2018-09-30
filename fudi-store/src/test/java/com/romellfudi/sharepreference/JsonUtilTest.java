@@ -33,9 +33,7 @@ import static org.mockito.Mockito.times;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
- * @version 1.0
- * @autor Romell Domínguez
- * @date 9/30/18
+ * Created by romelldominguez on 5/15/16.
  */
 @RunWith(PowerMockRunner.class)
 public class JsonUtilTest {

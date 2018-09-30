@@ -4,11 +4,8 @@ import com.romellfudi.sharepreference.resources.ObjectBean;
 import com.romellfudi.sharepreference.resources.ObjectDetailBean;
 
 /**
- * @version 1.0
- * @autor Romell Domínguez
- * @date 3/11/17
+ * Created by romelldominguez on 5/15/16.
  */
-
 public class SessionObj {
 
     public static void setObjectDetailBeanCurrent(ObjectDetailBean objectDetailBeanCurrent) {
