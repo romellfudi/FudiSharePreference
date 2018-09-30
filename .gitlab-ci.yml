@@ -1,4 +1,4 @@
-image: openjdk:8-jdk
+image: registry.gitlab.com/hardysim/android-ci:latest
 
 variables:
   LANG: "en_US.UTF-8"
@@ -9,7 +9,7 @@ variables:
   ANDROID_SDK_TOOLS: "26.0.2"
   ANDROID_NDK_VERSION: "16-beta1"
   TERM: "dumb"
-  GRADLE_OPTS: '-XX:+UseG1GC -XX:MaxGCPauseMillis=1000 -Dorg.gradle.jvmargs="-Xmx1536m -XX:MaxPermSize=1024m -XX:ReservedCodeCacheSize=440m -XX:+UseCompressedOops -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" -Dorg.gradle.parallel=false -Dorg.gradle.configureondemand=true'
+  GRADLE_OPTS: '-XX:+UseG1GC -XX:MaxGCPauseMillis=1000 -Dorg.gradle.jvmargs="-Xmx1536m -XX:MaxPermSize=1024m -XX:ReservedCodeCacheSize=440m -XX:+UseCompressedOops -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" -Dorg.gradle.parallel=false -Dorg.gradle.daemon=false -Dorg.gradle.configureondemand=true'
   _JAVA_OPTIONS: "-Xms1024m -Xmx1836m"
 
 before_script:
