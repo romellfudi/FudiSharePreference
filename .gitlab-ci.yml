@@ -48,7 +48,7 @@ build:
   stage: build
   script:
     - ./gradlew -v
-    - ./gradlew build --stacktrace
+    - ./gradlew build --no-daemo --stacktrace
   artifacts:
     paths:
     - app/build/outputs/
