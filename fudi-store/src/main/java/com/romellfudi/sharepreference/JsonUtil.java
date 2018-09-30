@@ -2,15 +2,19 @@ package com.romellfudi.sharepreference;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.reflections.util.Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.lang.reflect.Type;
 
 /**
  * Clase utilitaria para la transformación de objetos a una estructura json
@@ -45,14 +49,14 @@ public class JsonUtil {
         }
     }
 
-//    protected static <T> T getObjecToFile(Context context, String nameFile, Type typeOf) {
-//        String json = getStringToAssets(context, nameFile);
-//        if (!Utils.isEmpty(nameFile)) {
-//            Gson gson = new Gson();
-//            return gson.fromJson(json, typeOf);
-//        } else
-//            return null;
-//    }
+    protected static <T> T getObjecToFile(Context context, String nameFile, Type typeOf) {
+        String json = getStringToAssets(context, nameFile);
+        if (!Utils.isEmpty(nameFile)) {
+            Gson gson = new Gson();
+            return gson.fromJson(json, typeOf);
+        } else
+            return null;
+    }
 
     protected static String getStringToAssets(Context context, String nameFile) {
         StringBuilder buf = new StringBuilder();

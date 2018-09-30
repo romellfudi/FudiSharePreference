@@ -37,4 +37,7 @@ build:
 unitTests:
   stage: test
   script:
-    - ./gradlew test
+    - ./gradlew testDebugUnitTest -p fudi-store
+  artifacts:
+    paths:
+    - fudi-store/build/reports/testDebugUnitTest/
