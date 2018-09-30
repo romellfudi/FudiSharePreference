@@ -33,93 +33,44 @@ stages:
     - echo $ANDROID_COMPILE_SDK
 
     # Fetch the specified SDK tools version to build with
-    - wget --quiet --output-document=/tmp/sdk-tools-linux.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
-    - unzip /tmp/sdk-tools-linux.zip -d .android
-
-    # Set up environment variables
-    - export ANDROID_HOME=$PWD/.android
-    - export PATH=$PATH:$PWD/.android/platform-tools/
-
-    # Install platform tools and Android SDK for the compile target
-    - echo y | .android/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}"
-
+    - apt-get --quiet install --yes locales wget zip unzip lib32stdc++6 lib32z1
+    - wget --quiet --output-document=tools.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+    - unzip -q tools.zip
+    - rm -fr $ANDROID_HOME tools.zip
+    - mkdir -p $ANDROID_HOME
+    - mv tools $ANDROID_HOME/tools
+    # Fix gradle 3.0 problem
+    - mkdir --parents /root/.android && touch /root/.android/repositories.cfg
+    - mkdir "$ANDROID_HOME/licenses" || true
+    - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+    - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+    - echo y | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}"
+    - echo y | $ANDROID_HOME/tools/bin/sdkmanager "platform-tools"
+    - echo y | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}"
+    - echo y | $ANDROID_HOME/tools/bin/sdkmanager "extras;android;m2repository"
+    - echo y | $ANDROID_HOME/tools/bin/sdkmanager "extras;google;google_play_services"
+    - echo y | $ANDROID_HOME/tools/bin/sdkmanager "extras;google;m2repository"
+    - wget --quiet --output-document=android-ndk.zip http://dl.google.com/android/repository/android-ndk-r${ANDROID_NDK_VERSION}-linux-x86_64.zip
+    - unzip -q android-ndk.zip
+    - rm -fr ANDROID_NDK_HOME android-ndk.zip
+    - mv android-ndk-r${ANDROID_NDK_VERSION} ANDROID_NDK_HOME
+    - export ANDROID_SDK_HOME=$ANDROID_HOME
+    - export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/android-ndk
     - chmod +x ./gradlew
 
-build_debug:
-  <<: *build_template_def
-  only:
-    - develop
+    stages:
+    - build
+    - test
 
-  script:
-    - ./gradlew assembleDebug
+    build:
+    stage: build
+    script:
+      - ./gradlew assemble
+    artifacts:
+      paths:
+      - app/build/outputs/
 
-build_release:
-  <<: *build_template_def
-  only:
-    - master
-  script:
-    - ./gradlew assembleRelease
-
-####################################################################################################
-# UNIT TESTING
-#
-
-unit_test:
-  stage: test
-  only:
-    - master
-    - develop
-
-  before_script:
-    - export ANDROID_HOME=$PWD/.android
-    - export PATH=$PATH:$PWD/.android/platform-tools/
-
-  script:
-    - ./gradlew test
-
-
-####################################################################################################
-# PACKAGE APK FOR DOWNLOADING
-#
-
-.package_template: &package_template_def
-  before_script:
-    - export VERSION_NAME=`egrep '^[[:blank:]]+versionName[[:blank:]]'  app/build.gradle | awk '{print $2}' | sed s/\"//g`
-    - export VERSION_CODE=`egrep '^[[:blank:]]+versionCode[[:blank:]]'  app/build.gradle | awk '{print $2}'`
-    - mkdir -p deliverables
-
-    # Store some information about the build
-    - touch ./deliverables/info.txt
-    - echo "Build date          $(date)"                >> ./deliverables/info.txt
-    - echo "App version name    ${VERSION_NAME}"        >> ./deliverables/info.txt
-    - echo "App version code    ${VERSION_CODE}"        >> ./deliverables/info.txt
-    - echo "Git branch          ${CI_COMMIT_REF_NAME}"  >> ./deliverables/info.txt
-    - echo "Git commit          ${CI_COMMIT_SHA}"       >> ./deliverables/info.txt
-    - echo "Gitlab pipeline     ${CI_PIPELINE_ID}"      >> ./deliverables/info.txt
-
-
-package_develop:
-  <<: *package_template_def
-  stage: package
-  environment: Development
-  only:
-    - develop
-  script:
-    - mv app/build/outputs/apk/app-debug.apk ./deliverables/NameOfTheApp-v$VERSION_NAME-$VERSION_CODE-debug.apk
-  artifacts:
-    expire_in: 3 days
-    paths:
-    - deliverables
-
-package_release:
-  <<: *package_template_def
-  stage: package
-  environment: Release
-  only:
-    - master
-  script:
-    - mv app/build/outputs/apk/app-release.apk ./deliverables/NameOfTheApp-v$VERSION_NAME-$VERSION_CODE-release.apk
-  artifacts:
-    expire_in: 4 weeks
-    paths:
-    - deliverables
+    unitTests:
+      stage: test
+      script:
+      - ./gradlew test
