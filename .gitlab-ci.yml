@@ -48,7 +48,7 @@ build:
   stage: build
   script:
     - ./gradlew -v
-    - ./gradlew assembleDebug --stacktrace
+    - ./gradlew assembleDebug --info
   artifacts:
     paths:
     - app/build/outputs/
