@@ -26,7 +26,8 @@ public class SharePreferenced {
             value = "";
         SharedPreferences sharedPref = context.getSharedPreferences(
                 SHARED_PREFERENCE_SESSION, Context.MODE_PRIVATE);
-        sharedPref.edit().putString(key, value).commit();
+        sharedPref.edit().putString(key, value);
+        sharedPref.edit().commit();
     }
 
     private static String getSharedPreference(Context context, String value) {
