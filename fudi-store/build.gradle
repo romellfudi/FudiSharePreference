@@ -1,4 +1,29 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'fudi-store'
+
+    publishedGroupId = 'com.romellfudi.permission'
+    libraryName = 'FudiSharePreference'
+    artifact = 'fudi-permission'
+
+    libraryDescription = 'Android library from store Any kind of Data'
+
+    siteUrl = 'https://github.com/romellfudi/FudiSharePreference'
+    gitUrl = 'https://github.com/romellfudi/FudiSharePreference.git'
+
+    libraryVersion = '1.0.a'
+
+    developerId = 'romellfudi'
+    developerName = 'Romell Dominguez'
+    developerEmail = 'romllz489@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 26
