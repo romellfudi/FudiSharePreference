@@ -33,3 +33,4 @@ build_test:
     paths:
     - app/build/outputs/
     - fudi-store/build/
+
