@@ -26,7 +26,7 @@ stages:
   - build_test
 
 build_test:
-  stage: build
+  stage: build_test
   script:
     - ./gradlew assembleDebug testDebugUnitTest -p fudi-store
   artifacts:
