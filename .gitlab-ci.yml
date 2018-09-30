@@ -1,4 +1,4 @@
-image: registry.gitlab.com/hardysim/android-ci:latest
+image: openjdk:8-jdk
 
 variables:
   LANG: "en_US.UTF-8"
