@@ -17,7 +17,7 @@ import java.io.StringWriter;
 import java.lang.reflect.Type;
 
 /**
- * Clase utilitaria para la transformación de objetos a una estructura json
+ * Tools class Factory
  *
  * @version 1.0.a
  * @autor Romell Dominguez

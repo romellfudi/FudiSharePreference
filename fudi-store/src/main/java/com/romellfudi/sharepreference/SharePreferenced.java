@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 
 /**
- * Clase para guardar objetos de forma serealizada en el store interno
+ * Tool class SharedPreferences
  *
  * @version 1.0.a
  * @autor Romell Dominguez
