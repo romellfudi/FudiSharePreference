@@ -20,5 +20,8 @@ allprojects {
 }
 
 task clean(type: Delete) {
+    subprojects {
+        tasks.withType(Javadoc).all { enabled = false }
+    }
     delete rootProject.buildDir
 }
