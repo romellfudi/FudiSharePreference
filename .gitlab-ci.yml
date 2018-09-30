@@ -23,21 +23,13 @@ before_script:
   - chmod +x ./gradlew
 
 stages:
-  - build
-  - test
+  - build_test
 
-build:
+build_test:
   stage: build
   script:
-    - ./gradlew assembleDebug
+    - ./gradlew assembleDebug testDebugUnitTest -p fudi-store
   artifacts:
     paths:
     - app/build/outputs/
-
-unitTests:
-  stage: test
-  script:
-    - ./gradlew testDebugUnitTest -p fudi-store
-  artifacts:
-    paths:
-    - fudi-store/build/reports/testDebugUnitTest/
+    - fudi-store/build/
