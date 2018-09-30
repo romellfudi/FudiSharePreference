@@ -7,7 +7,7 @@ ext {
 
     publishedGroupId = 'com.romellfudi.permission'
     libraryName = 'FudiSharePreference'
-    artifact = 'fudi-permission'
+    artifact = 'fudi-store'
 
     libraryDescription = 'Android library from store Any kind of Data'
 
@@ -60,3 +60,6 @@ dependencies {
     testImplementation 'org.powermock:powermock-module-junit4:1.6.2'
     testImplementation 'org.powermock:powermock-api-mockito:1.6.2'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

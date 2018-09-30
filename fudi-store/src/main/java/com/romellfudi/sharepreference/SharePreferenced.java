@@ -8,8 +8,8 @@ import android.content.SharedPreferences;
  * Clase para guardar objetos de forma serealizada en el store interno
  *
  * @version 1.0.a
- * @autor Romell Domínguez
- * @date 3/11/17
+ * @autor Romell Dominguez
+ * @date 3/11/16
  */
 public class SharePreferenced {
 

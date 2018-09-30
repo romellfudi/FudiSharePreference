@@ -20,8 +20,8 @@ import java.lang.reflect.Type;
  * Clase utilitaria para la transformación de objetos a una estructura json
  *
  * @version 1.0.a
- * @autor Romell Domínguez
- * @date 3/11/17
+ * @autor Romell Dominguez
+ * @date 3/11/16
  */
 public class JsonUtil {
 
