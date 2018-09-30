@@ -1,7 +1,7 @@
 image: openjdk:8-jdk
 
 variables:
-#  LANG: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
   ANDROID_HOME: "/opt/android-sdk"
   ANDROID_NDK_HOME: "/opt/android-sdk/ndk-bundle"
   ANDROID_COMPILE_SDK: "26"
@@ -47,7 +47,8 @@ stages:
 build:
   stage: build
   script:
-    - ./gradlew assembleDebug --stacktrace
+    - ./gradlew -v
+#    - ./gradlew assembleDebug --stacktrace
   artifacts:
     paths:
     - app/build/outputs/
