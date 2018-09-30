@@ -47,7 +47,7 @@ stages:
 build:
   stage: build
   script:
-    - ./gradlew -v
+    - export LANG=en_EN.UTF-8
     - ./gradlew  --stacktrace
   artifacts:
     paths:
