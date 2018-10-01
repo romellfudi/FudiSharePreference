@@ -27,6 +27,8 @@ public class ObjectBean {
     private String data;
     private ArrayList<ObjectDetailBean> objectDetailBeans;
     // need getters
+    ...
+}
 ```
 
 En caso los atributos no tengan métodos, se referenciará un valor ``nulo
@@ -34,15 +36,13 @@ En caso los atributos no tengan métodos, se referenciará un valor ``nulo
 Almacenando un objeto genérico de un clase:
 
 ```java
- SharePreferenced.save(objectDetailBeanCurrent,MyClass.class);
+SharePreferenced.save(myObjectClass,MyClass.class);
  ```
 
 Almacenando distintas instancias de una clase:
 
 ```java
- SharePreferenced.save(objectDetailBeanCurrent,MyClass.class,"OBJ1");
+SharePreferenced.save(myObjectClass,MyClass.class,"OBJ1");
  ```
-
-
 
 **2016, November**

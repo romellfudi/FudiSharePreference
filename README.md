@@ -27,6 +27,8 @@ public class ObjectBean {
     private String data;
     private ArrayList<ObjectDetailBean> objectDetailBeans;
     // need getters
+    ...
+}
 ```
 
 In case attributes don't have setter method, the reference stores `null`value
@@ -34,13 +36,13 @@ In case attributes don't have setter method, the reference stores `null`value
 Save a singleton object:
 
 ```java
- SharePreferenced.save(objectDetailBeanCurrent,MyClass.class);
+SharePreferenced.save(myObjectClass,MyClass.class);
  ```
 
 Save different objects:
 
 ```java
- SharePreferenced.save(objectDetailBeanCurrent,MyClass.class,"OBJ1");
+SharePreferenced.save(myObjectClass,MyClass.class,"OBJ1");
  ```
 
 **2016, November**
