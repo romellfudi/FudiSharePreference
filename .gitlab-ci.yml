@@ -31,6 +31,5 @@ build_test:
     - ./gradlew assembleDebug testDebugUnitTest -p fudi-store
   artifacts:
     paths:
-    - app/build/outputs/
-    - fudi-store/build/
-
+    - fudi-store/build/outputs/
+    - fudi-store/build/reports/
