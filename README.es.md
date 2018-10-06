@@ -6,6 +6,7 @@
  [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
  [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Fudi%20SharePreference-green.svg?style=flat )]( https://android-arsenal.com/details/1/7170 )
  [![Jitpack](https://jitpack.io/v/romellfudi/FudiSharePreference.svg)](https://jitpack.io/#romellfudi/FudiSharePreference)
+ [![CircleCi](https://img.shields.io/circleci/project/github/romellfudi/FudiSharePreference.svg)](https://circleci.com/gh/romellfudi/FudiSharePreference/tree/master)
 
 ### by Romell Domínguez
 
