@@ -21,7 +21,7 @@ repositories {
     jcenter()
 }
 dependencies {
-    implementation 'com.romellfudi.permission:fudi-store:{latestVersion}'
+    implementation 'com.romellfudi.store:fudi-store:{latestVersion}'
 }
 ```
 

@@ -5,7 +5,7 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = 'fudi-store'
 
-    publishedGroupId = 'com.romellfudi.permission'
+    publishedGroupId = 'com.romellfudi.store'
     libraryName = 'FudiSharePreference'
     artifact = 'fudi-store'
 
