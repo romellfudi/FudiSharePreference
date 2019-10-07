@@ -8,3 +8,4 @@
 .externalNativeBuild
 local.properties
 .project
+/.settings

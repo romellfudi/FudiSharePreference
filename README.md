@@ -6,14 +6,14 @@
  [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
  [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Fudi%20SharePreference-green.svg?style=flat )]( https://android-arsenal.com/details/1/7170 )
  [![Jitpack](https://jitpack.io/v/romellfudi/FudiSharePreference.svg)](https://jitpack.io/#romellfudi/FudiSharePreference)
- [![CircleCi](https://img.shields.io/circleci/project/github/romellfudi/FudiPermission.svg)](https://circleci.com/gh/romellfudi/FudiPermission/tree/master)
+ [![CircleCi](https://img.shields.io/circleci/project/github/romellfudi/FudiSharePreference.svg)](https://circleci.com/gh/romellfudi/FudiSharePreference/tree/master)
 [![](https://img.shields.io/badge/language-ES-blue.svg)](./README.es)
 
 ### by Romell Domínguez
 
 [![](snapshot/icono.png)](https://www.romellfudi.com/)
 
-`latestVersion` es 1.0.a
+`latestVersion` is  [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
 
 Add the following in your app's `build.gradle` file:
 

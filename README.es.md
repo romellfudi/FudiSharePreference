@@ -13,7 +13,7 @@
 
 [![](snapshot/icono.png)](https://www.romellfudi.com/)
 
-`latestVersion` es 1.0.a
+`latestVersion` es  [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
 
 Agregar en tu archivo `build.gradle` del proyecto Android:
 
