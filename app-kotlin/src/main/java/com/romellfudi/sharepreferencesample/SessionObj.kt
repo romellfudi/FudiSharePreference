@@ -23,7 +23,7 @@ class SessionObj private constructor() {
         fun getInstance(): SessionObj {
             if (instance == null)
                 instance = SessionObj()
-            instance
+            return instance as SessionObj
         }
     }
 }
