@@ -1,8 +1,6 @@
 package com.romellfudi.sharepreference
 
 import android.content.Context
-import android.content.SharedPreferences
-
 
 /**
  * Tool class SharedPreferences

@@ -23,6 +23,7 @@ repositories {
 }
 dependencies {
     implementation 'com.romellfudi.store:fudi-store:{latestVersion}'
+    implementation 'com.romellfudi.store:kotlin-fudi-store:{latestVersion}'
 }
 ```
 

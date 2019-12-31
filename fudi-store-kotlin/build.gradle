@@ -5,13 +5,13 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'fudi-store'
+    bintrayName = 'kotlin-fudi-store'
 
     publishedGroupId = 'com.romellfudi.store'
     libraryName = 'FudiSharePreference'
-    artifact = 'fudi-store'
+    artifact = 'kotlin-fudi-store'
 
-    libraryDescription = 'Android library from store Any kind of Data'
+    libraryDescription = 'Android Kotlin library from store Any kind of Data'
 
     siteUrl = 'https://github.com/romellfudi/FudiSharePreference'
     gitUrl = 'https://github.com/romellfudi/FudiSharePreference.git'
