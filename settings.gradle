@@ -1,1 +1,1 @@
-include ':app', ':fudi-store'
+include ':app', ':fudi-store',':app-kotlin', ':fudi-store-kotlin'
