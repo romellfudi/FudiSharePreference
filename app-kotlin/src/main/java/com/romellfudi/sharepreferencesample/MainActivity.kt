@@ -11,17 +11,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val textView = findViewById<View>(R.id.texto) as TextView
-
         val objectDetailBean = ObjectDetailBean()
         val data = ArrayList<String>()
-        data.add("hello")
-        data.add("wait")
-        data.add("bye")
-        objectDetailBean.details = data
-
-        SessionObj.getInstance().objectDetailBeanCurrent = objectDetailBean
-        textView.append("\n" + SessionObj.getInstance().objectDetailBeanCurrent!!.details!!
-        )
+        with(data) {
+            add("hello")
+            add("wait")
+            add("bye")
+        }
+//        objectDetailBean.details = data
+        SessionObj.getInstance().objectDetailBeanCurrent = objectDetailBean.apply { details = data }
+        (findViewById<View>(R.id.texto) as TextView)
+                .append("\n${SessionObj.getInstance().objectDetailBeanCurrent?.details!!}")
     }
 }

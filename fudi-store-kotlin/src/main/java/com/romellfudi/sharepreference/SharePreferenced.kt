@@ -35,42 +35,40 @@ object SharePreferenced {
         return sharedPref.getString(value, "")
     }
 
-    fun save(`object`: Any, cls: Class<*>) {
+    fun save(any: Any, cls: Class<*>) {
         var json = ""
         try {
-            json = JsonUtil.toJson(`object`, false)
+            json = JsonUtil.toJson(any, false)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         setSharedPreference(mContext, cls.simpleName, json)
     }
 
     fun <T> load(cls: Class<T>): T? {
         val json = getSharedPreference(mContext!!, cls.simpleName)
-        var `object`: Any? = null
+        var any: Any? = null
         if (json != "")
-            `object` = JsonUtil.fromJson(json!!, cls)
-        return cls.cast(`object`)
+            any = JsonUtil.fromJson(json!!, cls)
+        return cls.cast(any)
     }
 
-    fun save(`object`: Any, cls: Class<*>, TAG: String) {
+    fun save(any: Any, cls: Class<*>, TAG: String) {
         var json = ""
         try {
-            json = JsonUtil.toJson(`object`, false)
+            json = JsonUtil.toJson(any, false)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         setSharedPreference(mContext, cls.simpleName + TAG, json)
     }
 
     fun <T> load(cls: Class<T>, tag: String): T? {
         val json = getSharedPreference(mContext!!, cls.simpleName + tag)
-        var `object`: Any? = null
+        var any: Any? = null
         if (json != "")
-            `object` = JsonUtil.fromJson(json!!, cls)
-        return cls.cast(`object`)
+            any = JsonUtil.fromJson(json!!, cls)
+        return cls.cast(any)
     }
 
 

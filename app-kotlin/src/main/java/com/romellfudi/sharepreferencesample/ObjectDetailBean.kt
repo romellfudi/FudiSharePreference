@@ -11,9 +11,7 @@ class ObjectDetailBean {
 
     var details: ArrayList<String>? = null
 
-    constructor() {
-
-    }
+    constructor()
 
     constructor(details: ArrayList<String>) {
         this.details = details

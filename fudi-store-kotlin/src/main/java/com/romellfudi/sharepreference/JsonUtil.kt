@@ -35,39 +35,38 @@ class JsonUtil {
 
         internal fun <T> fromJson(name: String, classes: Class<T>): Any? {
             val objMapper = ObjectMapper()
-            try {
-                return objMapper.readValue(name, classes)
+            return try {
+                objMapper.readValue(name, classes)
             } catch (exc: Exception) {
                 exc.printStackTrace()
-                return null
+                null
             }
 
         }
 
         internal fun <T> getObjecToFile(context: Context, nameFile: String, typeOf: Type): T? {
             val json = getStringToAssets(context, nameFile)
-            if (!Utils.isEmpty(nameFile)) {
-                val gson = Gson()
-                return gson.fromJson<T>(json, typeOf)
+            return if (!Utils.isEmpty(nameFile)) {
+                Gson().fromJson<T>(json, typeOf)
             } else
-                return null
+                null
         }
 
-        internal fun getStringToAssets(context: Context, nameFile: String): String? {
+        private fun getStringToAssets(context: Context, nameFile: String): String? {
             val buf = StringBuilder()
-            var `is`: InputStream? = null
-            var `in`: BufferedReader? = null
+            var inputStream: InputStream?
+            var bufferedReader: BufferedReader?
             var json: String? = null
             try {
-                `is` = context.assets.open("json/$nameFile")
-                `in` = BufferedReader(InputStreamReader(`is`, "UTF-8"))
-                var str: String? = null
-                str = `in`.readLine()
+                inputStream = context.assets.open("json/$nameFile")
+                bufferedReader = BufferedReader(InputStreamReader(inputStream, "UTF-8"))
+                var str: String?
+                str = bufferedReader.readLine()
                 while (str != null) {
                     buf.append(str)
-                    str = `in`.readLine()
+                    str = bufferedReader.readLine()
                 }
-                `in`.close()
+                bufferedReader.close()
                 json = buf.toString()
             } catch (e: IOException) {
                 e.printStackTrace()
