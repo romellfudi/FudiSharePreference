@@ -1,22 +1,13 @@
 package com.romellfudi.sharepreference.resources
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by romelldominguez on 5/15/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-class ObjectBean {
-
-    var data: String? = null
-
-    var objectDetailBeans: ArrayList<ObjectDetailBean>? = null
-
-    constructor() {}
-
-    constructor(data: String) {
-        this.data = data
-    }
+data class ObjectBean(var data: String?, var objectDetailBeans: ArrayList<ObjectDetailBean>?) {
+    constructor() : this(null, null)
+    constructor(data: String) : this(data, null)
 }

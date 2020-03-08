@@ -12,26 +12,27 @@ import android.content.Context
 object SharePreferenced {
 
     private var mContext: Context? = null
-    private var SHARED_PREFERENCE_SESSION: String? = null
+    private var SESSION: String? = null
 
     fun init(context: Context) {
         mContext = context
-        SHARED_PREFERENCE_SESSION = mContext!!.packageName + ".SHARED_PREFERENCE_SESSION"
+        SESSION = mContext!!.packageName + ".SHARED_PREFERENCE_SESSION"
     }
 
     private fun setSharedPreference(context: Context?, key: String, value: String?) {
         var value = value
         if (value == null)
             value = ""
-        val sharedPref = context!!.getSharedPreferences(
-                SHARED_PREFERENCE_SESSION, Context.MODE_PRIVATE)
-        sharedPref.edit().putString(key, value)
-        sharedPref.edit().commit()
+        with(context!!.getSharedPreferences(
+                SESSION, Context.MODE_PRIVATE).edit()) {
+            putString(key, value)
+            commit()
+        }
     }
 
     private fun getSharedPreference(context: Context, value: String): String? {
         val sharedPref = context.getSharedPreferences(
-                SHARED_PREFERENCE_SESSION, Context.MODE_PRIVATE)
+                SESSION, Context.MODE_PRIVATE)
         return sharedPref.getString(value, "")
     }
 

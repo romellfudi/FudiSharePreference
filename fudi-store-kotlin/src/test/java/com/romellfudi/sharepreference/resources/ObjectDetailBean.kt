@@ -7,22 +7,13 @@ import java.util.*
  * Created by romelldominguez on 5/15/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-class ObjectDetailBean {
-
-    var idNotHasSetter: String = ""
+data class ObjectDetailBean(var idNotHasSetter: String? = null,
+                            var details: ArrayList<String>? = null) {
     var name: String? = null
 
-    var details: ArrayList<String>? = null
+    constructor() : this(null, null)
 
-    constructor() {
+    constructor(id: String) : this(id, null)
 
-    }
-
-    constructor(id: String) {
-        this.idNotHasSetter = id
-    }
-
-    constructor(details: ArrayList<String>) {
-        this.details = details
-    }
+    constructor(details: ArrayList<String>) : this(null, details)
 }
