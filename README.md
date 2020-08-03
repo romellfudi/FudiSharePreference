@@ -13,7 +13,7 @@
 
 ### by Romell Domínguez
 
-[![](snapshot/icono.png)](https://www.romellfudi.com/)
+<a href="https://www.romellfudi.com/"><img src="snapshot/icono.png" width=200/></a>
 
 `latestVersion` is  [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
 
