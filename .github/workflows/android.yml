@@ -10,44 +10,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Build App with Gradle
-        run: ./gradlew assembleDebug
-      - name: Testing fudi-store
-        run: ./gradlew assembleDebug lint testDebugUnitTest -p fudi-store
-      - name: Upload Testing fudi-store
-        uses: actions/upload-artifact@v1
-        with:
-          name: fudi-store-test
-          path: fudi-store/build/reports/tests/testDebugUnitTest
-      - name: Upload fudi-store artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: fudi-store-aar
-          path: fudi-store/build/outputs/aar/fudi-store-debug.aar
-      - name: Testing fudi-store-kotlin
-        run: ./gradlew assembleDebug lint testDebugUnitTest -p fudi-store-kotlin
-      - name: Upload Testing fudi-storekotlin
-        uses: actions/upload-artifact@v1
-        with:
-          name: fudi-store-kotlin-test
-          path: fudi-store-kotlin/build/reports/tests/testDebugUnitTest
-      - name: Upload fudi-store-kotlin artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: fudi-store-kotlin-aar
-          path: fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar
-      - name: Upload Assets
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: "Latest Release"
-          files: |
-              *.aar
-            
+    - uses: actions/checkout@v1
+    - name: set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build App with Gradle
+      run: ./gradlew assembleDebug
+    - name: Testing fudi-store
+      run: ./gradlew assembleDebug lint testDebugUnitTest -p fudi-store
+    - name: Upload Testing fudi-store
+      uses: actions/upload-artifact@v1
+      with:
+        name: fudi-store-test
+        path: fudi-store/build/reports/tests/testDebugUnitTest
+    - name: Upload fudi-store artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: fudi-store-aar
+        path: fudi-store/build/outputs/aar/fudi-store-debug.aar
+    - name: Testing fudi-store-kotlin
+      run: ./gradlew assembleDebug lint testDebugUnitTest -p fudi-store-kotlin
+    - name: Upload Testing fudi-storekotlin
+      uses: actions/upload-artifact@v1
+      with:
+        name: fudi-store-kotlin-test
+        path: fudi-store-kotlin/build/reports/tests/testDebugUnitTest
+    - name: Upload fudi-store-kotlin artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: fudi-store-kotlin-aar
+        path: fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar 
+    - name: Upload Assets
+      uses: marvinpinto/action-automatic-releases@latest 
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: false
+        title: "Latest Release"
+        files: |
+            *.aar
+
