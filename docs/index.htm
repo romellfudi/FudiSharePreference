@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)#0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/romellfudi/assets/master/favicon.ico" />
+  <title>FudiSharePreference Tutorial</title>
+  <link rel="stylesheet" href="./index_files/css">
+  <link rel="stylesheet" href="./index_files/icon">
+  <link rel="stylesheet" href="./index_files/codelab-elements.css">
+  <link rel="stylesheet" href="./index_files/prettify.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+<style></style></head>
+<body class="vsc-initialized">
+  <google-codelab id="https://github.com/romellfudi/FudiSharePreference" environment="web" feedback-link="https://github.com/romellfudi/FudiSharePreference/issues" selected="0" google-codelab-ready="" codelab-title="FudiSharePreference Tutorial"><div id="drawer"><div class="codelab-time-container" style="display: none;"></div><div class="steps"><ol><li completed="" selected=""><a href="#0"><span class="step"><span>Introduction</span></span></a></li><li><a href="#1"><span class="step"><span>Setting up</span></span></a></li><li><a href="#2"><span class="step"><span>Implementation</span></span></a></li><li><a href="#3"><span class="step"><span>License</span></span></a></li></ol></div><div class="metadata"><a target="_blank" href="https://github.com/romellfudi/FudiSharePreference/issues"><i class="material-icons">bug_report</i> Report a mistake</a></div></div><div id="codelab-title"><div id="codelab-nav-buttons"><a href="https://codelabs-preview.appspot.com/" id="arrow-back"><i class="material-icons">close</i></a><a href="#" id="menu"><i class="material-icons">menu</i></a></div><h1 is-upgraded="" class="title">FudiSharePreference Tutorial</h1><div class="codelab-time-container" style="display: none;"></div><devsite-user></devsite-user></div><div id="main"><div id="steps"><google-codelab-step label="Introduction" duration="0" step="1" style="transform: translate3d(0px, 0px, 0px);" selected=""><h2 is-upgraded="" class="step-title">1. Introduction</h2>
+        <p class="image-container"><img style="width: 624.00px" src="./index_files/background.png"></p>
+<h2 is-upgraded="">Target &amp; How setup</h2>
+<p>This is a tutorial for introducing a how to save and how to load any object in your Android Project, First at all, need add the dependency repository and library into your gradle files:</p>
+<p>Please replace <code>latestVersion</code> annotation with number on </p>
+<pre><code><span class="pln">repositories </span><span class="pun">{</span><span class="pln">
+    jcenter</span><span class="pun">()</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+dependencies </span><span class="pun">{</span><span class="pln">
+    implementation </span><span class="str">'com.romellfudi.store:fudi-store:{latestVersion}'</span><span class="pln">
+    implementation </span><span class="str">'com.romellfudi.store:kotlin-fudi-store:{latestVersion}'</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<h2 is-upgraded="">Dependencies<strong> </strong></h2>
+<p>Knowledge Basic programming</p>
+<aside class="warning"><p><strong>Alert: </strong>So little hard? Go to basic .<a href="https://www.geeksforgeeks.org/android-app-development-fundamentals-for-beginners/" target="_blank">GeekForGeek</a></p>
+</aside>
+<aside class="special"><p><strong>Topic: </strong>Is pretty easy? Please continue Sir/Madam</p>
+</aside>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Setting up" duration="0" step="2"><h2 is-upgraded="" class="step-title">2. Setting up</h2>
+        <p>To start you  need a code with interfaces classes or adapter patterns.</p>
+<h2 is-upgraded=""><strong>Download the Code</strong></h2>
+<p>Click the following link to download all the code for this tutorial:</p>
+<p><a href="https://github.com/romellfudi/FudiSharePreference/archive/master.zip" target="_blank"><paper-button class="colored" raised=""><iron-icon icon="cloud_download"></iron-icon>Download source code</paper-button></a></p>
+<h2 class="checklist" is-upgraded=""><strong>What you'll learn</strong></h2>
+<ul class="checklist">
+<li>How to separate the interface component and concrete component</li>
+<li>How to write callback for returns asynchronous objects </li>
+</ul>
+<h2 is-upgraded=""><strong>What you'll need</strong></h2>
+<ul>
+<li>Android Studio <code>+</code></li>
+<li><a href="https://github.com/romellfudi/FudiSharePreference/archive/master.zip" target="_blank">The sample code</a></li>
+<li>Basic knowledge of Gradle &amp; Android</li>
+</ul>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Implementation" duration="0" step="3" style="transform: translate3d(-110%, 0px, 0px);"><h2 is-upgraded="" class="step-title">3. Implementation</h2>
+        <h2 is-upgraded=""><strong>Add annotations:</strong></h2>
+<p>  Your class tag with JsonIgnoreProperties annotation and implements set &amp; get: :</p>
+<pre><code><span class="lit">@JsonIgnoreProperties</span><span class="pun">(</span><span class="pln">ignoreUnknown </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ObjectBean</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> data</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">ObjectDetailBean</span><span class="pun">&gt;</span><span class="pln"> objectDetailBeans</span><span class="pun">;</span><span class="pln">
+    </span><span class="com">// need getters</span><span class="pln">
+    </span><span class="pun">...</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>In case attributes, they don't have to set a method, the reference stores <code>null value.</code></p>
+<p>Save a singleton object: </p>
+<pre><code><span class="typ">SharePreferenced</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="pln">myObjectClass</span><span class="pun">,</span><span class="typ">MyClass</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">);</span></code></pre>
+<p>Now, Save different objects by <code>unique id tag</code>:</p>
+<pre><code><span class="typ">SharePreferenced</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="pln">myObjectClass</span><span class="pun">,</span><span class="typ">MyClass</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">,</span><span class="str">"OBJ1"</span><span class="pun">);</span></code></pre>
+<aside class="special"><p>Great, it's already to be run on any device or emulator.</p>
+</aside>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="License" duration="0" step="4" style="transform: translate3d(110%, 0px, 0px);"><h2 is-upgraded="" class="step-title">4. License</h2>
+        <h2 is-upgraded=""><strong>by Romell Domínguez</strong></h2>
+<p class="image-container"><img style="width: 287.00px" src="./index_files/icono.png"></p>
+<p>Copyright 2016 Romell D.Z.</p>
+<p>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</p>
+<p>http://www.apache.org/licenses/LICENSE-2.0</p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,</p>
+<p>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</p>
+<p>See the License for the specific language governing permissions and limitations under the License.</p>
+
+
+      </div></div></google-codelab-step></div><div id="controls"><div id="fabs"><a href="#" id="previous-step" title="Previous step" disappear="">Back</a><div class="spacer"></div><a href="#" id="next-step" title="Next step">Next</a><a href="https://codelabs-preview.appspot.com/" id="done" title="Codelab complete" hidden="">Done</a></div></div></div></google-codelab>
+
+  <script async="">
+    document.addEventListener("DOMContentLoaded", function() {
+      var pubBtn = document.getElementById('publishButton');
+      var pubForm = document.getElementById('publishForm');
+      var pubStatus = document.getElementById('publishButtonStatus');
+
+      pubForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        pubBtn.disabled = true;
+        pubStatus.textContent = '';
+        pubStatus.classList.remove('success');
+        pubStatus.classList.remove('error');
+
+        var req = new XMLHttpRequest();
+
+        var onError = function() {
+          var msg = 'Request failed';
+          if (req.statusText) {
+            msg += ' with status "' + req.statusText + '"';
+          }
+          if (req.responseText) {
+            msg += ': ' + req.responseText;
+          }
+          pubStatus.classList.add('error');
+          pubStatus.textContent = msg;
+          pubBtn.disabled = false;
+        };
+
+        req.addEventListener('load', function() {
+          if (req.status != 200) {
+            onError();
+            return;
+          }
+          pubStatus.textContent = ('Publication request submitted' +
+            ' (reload preview to re-publish)');
+          pubStatus.classList.add('success');
+        });
+        req.addEventListener('error', onError);
+        req.addEventListener('abort', onError);
+        req.open("post", pubForm.action);
+        req.send(new FormData(pubForm));
+      });
+    });
+  </script>
+
+  <script src="./index_files/native-shim.js"></script>
+  <script src="./index_files/custom-elements.min.js"></script>
+  <script src="./index_files/prettify.js"></script>
+  <script src="./index_files/codelab-elements.js"></script>
+  <script src="./index_files/api.js"></script>
+
+
+</body></html>
