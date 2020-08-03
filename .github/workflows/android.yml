@@ -51,6 +51,4 @@ jobs:
           This release actually.  
         gzip: folders
         files: >
-          fudi-store/build/outputs/aar/fudi-store-debug.aar
-          fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar 
-          work-flows:.github/
+          *.aar 
