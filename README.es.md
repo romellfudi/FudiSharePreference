@@ -1,4 +1,4 @@
-## Android API para Almacenamiento de Data
+[![](snapshot/background.png)](https://github.com/romellfudi/FudiSharePreference)
 
  [![platform](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)
  [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17)
