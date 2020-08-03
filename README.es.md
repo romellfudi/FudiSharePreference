@@ -12,8 +12,7 @@
 [![](https://img.shields.io/badge/language-EN-blue.svg)](./)
 
 ### by Romell Domínguez
-
-[![](snapshot/icono.png)](https://www.romellfudi.com/)
+[![](https://raw.githubusercontent.com/romellfudi/assets/master/favicon.ico)](https://www.romellfudi.com/)
 
 `latestVersion` es  [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
 
