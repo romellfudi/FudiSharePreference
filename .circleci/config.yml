@@ -21,20 +21,12 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Run Java Tests
+          name: Run Tests
           command: ./gradlew assembleDebug lint testDebugUnitTest -p fudi-store
       - store_artifacts:
           path: fudi-store/build/reports
           destination: reports
       - store_test_results:
           path: fudi-store/build/test-results
-      - run:
-          name: Run Kotlin Tests 
-          command: ./gradlew assembleDebug lint testDebugUnitTest -p fudi-store-kotlin
-      - store_artifacts:
-          path: fudi-store-kotlin/build/reports
-          destination: reports
-      - store_test_results:
-          path: fudi-store-kotlin/build/test-results
 
 #
