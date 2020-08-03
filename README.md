@@ -1,4 +1,4 @@
-[![](snapshot/background.png)](https://github.com/romellfudi/FudiSharePreference)
+## Android API from store Any kind of Data
 
  [![platform](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)
  [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17)
@@ -12,7 +12,8 @@
 [![](https://img.shields.io/badge/language-ES-blue.svg)](./README.es)
 
 ### by Romell Domínguez
-[![](https://raw.githubusercontent.com/romellfudi/assets/master/favicon.ico)](https://www.romellfudi.com/)
+
+[![](snapshot/icono.png)](https://www.romellfudi.com/)
 
 `latestVersion` is  [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
 

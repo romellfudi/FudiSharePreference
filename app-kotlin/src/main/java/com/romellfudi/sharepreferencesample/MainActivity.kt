@@ -12,12 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val objectDetailBean = ObjectDetailBean()
-
-        SessionObj.getInstance().objectDetailBeanCurrent =
-                ObjectDetailBean(ArrayList<String>().apply {
-                    add("hello")
-                    add("wait")
-                    add("bye")})
+        val data = ArrayList<String>()
+        with(data) {
+            add("hello")
+            add("wait")
+            add("bye")
+        }
+//        objectDetailBean.details = data
+        SessionObj.getInstance().objectDetailBeanCurrent = objectDetailBean.apply { details = data }
         (findViewById<View>(R.id.texto) as TextView)
                 .append("\n${SessionObj.getInstance().objectDetailBeanCurrent?.details!!}")
     }

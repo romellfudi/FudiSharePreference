@@ -40,10 +40,10 @@ class JsonUtilTest {
     @RelaxedMockK
     lateinit var editor: SharedPreferences.Editor
 
-    private var storeValue = AtomicReference<String>()
+    internal var storeValue = AtomicReference<String>()
 
-    private val keyCaptor = slot<String>()
-    private val JSONvalueCaptor = slot<String>()
+    val keyCaptor = slot<String>()
+    val JSONvalueCaptor = slot<String>()
 
     @Before
     fun prepareMocks() {
@@ -55,7 +55,7 @@ class JsonUtilTest {
         whenever(sharedPref.getString(any(), eq("")))
                 .thenAnswer {
                     storeValue.set(it.arguments[0] as String?)
-                    if (storeValue.get() == keyCaptor.captured) JSONvalueCaptor.captured else null
+                    if (storeValue.get().equals(keyCaptor.captured)) JSONvalueCaptor.captured else null
                 }
     }
 
@@ -63,19 +63,22 @@ class JsonUtilTest {
     @Throws(Exception::class)
     fun testSimpleObjectToJson() {
         val objectDetailBean = ObjectDetailBean("234")
-                .apply {
-                    name = "fudi"
-                    details = ArrayList<String>().apply {
-                        add("hello")
-                        add("wait")
-                        add("bye")
-                    }
-                }
+        objectDetailBean.name = "fudi"
+        val data = ArrayList<String>()
+        data.add("hello")
+        data.add("wait")
+        data.add("bye")
+        objectDetailBean.details = data
         SessionObj.objectDetailBeanCurrent = objectDetailBean
+
         verify { editor.putString(capture(keyCaptor), capture(JSONvalueCaptor)) }
+
         val storedValue = SessionObj.objectDetailBeanCurrent
         assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue<Any>()))
-        assertThat(storedValue, equalTo(objectDetailBean))
+        assertThat(storedValue, not(equalTo(objectDetailBean)))
+        assertThat(storedValue!!.name, `is`(equalTo(objectDetailBean.name)))
+        assertThat(storedValue!!.details, `is`(equalTo(objectDetailBean.details)))
+        assertThat(storedValue!!.idNotHasSetter, `is`(equalTo(objectDetailBean.idNotHasSetter)))
 
     }
 
@@ -84,11 +87,12 @@ class JsonUtilTest {
     fun testComplexObjectToJson() {
         val detailBeans = ArrayList<ObjectDetailBean>()
         for (i in 0..4) {
-            val detailBean = ObjectDetailBean(ArrayList<String>().apply {
-                add("aa")
-                add("bbbb")
-                add("c")
-            }).apply { name = "id-$i" }
+            val info = ArrayList<String>()
+            info.add("aa")
+            info.add("bbbb")
+            info.add("c")
+            val detailBean = ObjectDetailBean(info)
+            detailBean.name = "id-$i"
 
             SessionObj.objectDetailBeanCurrent = detailBean
             verify(exactly = i + 1) {
@@ -97,9 +101,11 @@ class JsonUtilTest {
 
             val storedValue = SessionObj.objectDetailBeanCurrent
             assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue<Any>()))
-            assertThat(storedValue, equalTo(detailBean))
+            assertThat(storedValue, not(equalTo(detailBean)))
+            assertThat(storedValue!!.name, `is`(equalTo(detailBean.name)))
+            assertThat(storedValue!!.details, `is`(equalTo(detailBean.details)))
 
-            detailBeans.add(storedValue!!)
+            detailBeans.add(storedValue)
         }
         val objectBeanMain = ObjectBean("Main")
         objectBeanMain.objectDetailBeans = detailBeans
@@ -115,7 +121,9 @@ class JsonUtilTest {
             val storedValue = storedObjectBeanMain.objectDetailBeans!![i]
             val detailBean = detailBeans[i]
             assertThat(storedValue, `is`(notNullValue<Any>()))
-            assertThat(storedValue,  equalTo(detailBean))
+            assertThat(storedValue, not(equalTo(detailBean)))
+            assertThat(storedValue.name, `is`(equalTo(detailBean.name)))
+            assertThat(storedValue.details, `is`(equalTo(detailBean.details)))
         }
         assertThat(storedObjectBeanMain.data, `is`(equalTo(objectBeanMain.data)))
     }
