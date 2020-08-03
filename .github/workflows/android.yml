@@ -42,12 +42,15 @@ jobs:
         name: fudi-store-kotlin-aar
         path: fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar 
     - name: Upload Assets
-      uses: marvinpinto/action-automatic-releases@v1.0.0 
+      uses: meeDamian/github-release@2.0
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
-        prerelease: false
-        title: "Latest Release"
-        files: |
-            *.aar
-
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: latest
+        name: Latest Relese
+        body: >
+          This release actually.  
+        gzip: folders
+        files: >
+          fudi-store/build/outputs/aar/fudi-store-debug.aar
+          fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar 
+          work-flows:.github/
