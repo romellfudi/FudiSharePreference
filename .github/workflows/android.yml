@@ -42,7 +42,7 @@ jobs:
         name: fudi-store-kotlin-aar
         path: fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar 
     - name: Upload Assets
-      uses: marvinpinto/action-automatic-releases@latest 
+      uses: marvinpinto/action-automatic-releases@v1.0.0 
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
