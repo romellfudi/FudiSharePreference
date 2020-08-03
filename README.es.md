@@ -14,7 +14,7 @@
 ### by Romell Domínguez
 [![](https://raw.githubusercontent.com/romellfudi/assets/master/favicon.ico)](https://www.romellfudi.com/)
 
-`latestVersion` es  [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
+REmplazar la siguiente annotación `latestVersion` con la última versión en [![Bintray](https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg)](https://bintray.com/romllz489/maven/fudi-store)
 
 Agregar en tu archivo `build.gradle` del proyecto Android:
 
