@@ -1,3 +1,4 @@
 theme: jekyll-theme-cayman
 show_downloads: true
-title: Android API from store Any kind of Data
+show_title: false
+show_description: false
