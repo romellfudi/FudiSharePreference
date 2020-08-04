@@ -44,11 +44,11 @@ jobs:
     - name: Upload Assets
       uses: meeDamian/github-release@2.0
       with:
+        allow_override: true
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
         name: Latest Relese
         body: >
           This release actually.  
         files: >
-          fudi-store/build/outputs/aar/fudi-store-debug.aar
-          fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar 
+          *.aar 
