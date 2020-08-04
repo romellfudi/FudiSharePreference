@@ -52,6 +52,4 @@ jobs:
         gzip: folders
         files: >
           fudi-store/build/outputs/aar/fudi-store-debug.aar
-          fudi-store/build/outputs/aar/fudi-store-release.aar
-          fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar
-          fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-release.aar 
+          fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar 
