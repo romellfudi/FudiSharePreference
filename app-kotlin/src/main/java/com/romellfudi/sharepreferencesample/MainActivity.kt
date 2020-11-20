@@ -14,11 +14,13 @@ class MainActivity : AppCompatActivity() {
         val objectDetailBean = ObjectDetailBean()
 
         SessionObj.getInstance().objectDetailBeanCurrent =
-                ObjectDetailBean(ArrayList<String>().apply {
+                ObjectDetailBean(99,1234.56, ArrayList<String>().apply {
                     add("hello")
                     add("wait")
                     add("bye")})
         (findViewById<View>(R.id.texto) as TextView)
-                .append("\n${SessionObj.getInstance().objectDetailBeanCurrent?.details!!}")
+                .append("\n${SessionObj.getInstance().objectDetailBeanCurrent?.details!!}," +
+                        "${SessionObj.getInstance().objectDetailBeanCurrent?.value!!} ," +
+                        "${SessionObj.getInstance().objectDetailBeanCurrent?.valueDouble!!}")
     }
 }
