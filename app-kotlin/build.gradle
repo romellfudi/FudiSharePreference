@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
@@ -37,6 +37,6 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.+'
     implementation group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.7.7'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-//    implementation project(':fudi-store-kotlin')
-    implementation 'com.romellfudi.store:kotlin-fudi-store:1.0.b'
+    implementation project(':fudi-store-kotlin')
+//    implementation 'com.romellfudi.store:kotlin-fudi-store:1.0.b'
 }

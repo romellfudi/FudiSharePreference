@@ -7,6 +7,7 @@ import java.util.*
  * Created by romelldominguez on 5/15/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class ObjectDetailBean(var state: Boolean,var value: Int, var valueDouble: Double, var details: ArrayList<String>?) {
-    constructor() : this(false,-1, 0.0,null)
-}
+data class ObjectDetailBean(var state: Boolean=false,
+                            var value: Int=-1,
+                            var valueDouble: Double=0.0,
+                            var details: ArrayList<String>?=null)

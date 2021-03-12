@@ -65,16 +65,12 @@ class JsonUtilTest {
         val objectDetailBean = ObjectDetailBean("234")
                 .apply {
                     name = "fudi"
-                    details = ArrayList<String>().apply {
-                        add("hello")
-                        add("wait")
-                        add("bye")
-                    }
+                    details = arrayListOf("hello", "wait", "bye")
                 }
         SessionObj.objectDetailBeanCurrent = objectDetailBean
         verify { editor.putString(capture(keyCaptor), capture(JSONvalueCaptor)) }
         val storedValue = SessionObj.objectDetailBeanCurrent
-        assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue<Any>()))
+        assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue()))
         assertThat(storedValue, equalTo(objectDetailBean))
 
     }
@@ -83,22 +79,18 @@ class JsonUtilTest {
     @Throws(Exception::class)
     fun testComplexObjectToJson() {
         val detailBeans = ArrayList<ObjectDetailBean>()
-        for (i in 0..4) {
-            val detailBean = ObjectDetailBean(ArrayList<String>().apply {
-                add("aa")
-                add("bbbb")
-                add("c")
-            }).apply { name = "id-$i" }
-
+        (0..4).forEach {
+            val detailBean = ObjectDetailBean().apply {
+                name = "id-$it"
+                details = arrayListOf("aa", "bbbb", "c")
+            }
             SessionObj.objectDetailBeanCurrent = detailBean
-            verify(exactly = i + 1) {
+            verify(exactly = it + 1) {
                 editor.putString(capture(keyCaptor), capture(JSONvalueCaptor))
             }
-
             val storedValue = SessionObj.objectDetailBeanCurrent
-            assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue<Any>()))
+            assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue()))
             assertThat(storedValue, equalTo(detailBean))
-
             detailBeans.add(storedValue!!)
         }
         val objectBeanMain = ObjectBean("Main")
@@ -110,14 +102,16 @@ class JsonUtilTest {
         }
         val storedObjectBeanMain = SessionObj.currentObject()
 
-        assertThat(storedObjectBeanMain, `is`(notNullValue<Any>()))
-        for (i in 0 until storedObjectBeanMain!!.objectDetailBeans!!.size) {
-            val storedValue = storedObjectBeanMain.objectDetailBeans!![i]
-            val detailBean = detailBeans[i]
-            assertThat(storedValue, `is`(notNullValue<Any>()))
-            assertThat(storedValue,  equalTo(detailBean))
+        assertThat(storedObjectBeanMain, `is`(notNullValue()))
+        storedObjectBeanMain?.objectDetailBeans?.size?.let { size ->
+            (0 until size).forEach { i ->
+                val storedValue = storedObjectBeanMain.objectDetailBeans!![i]
+                val detailBean = detailBeans[i]
+                assertThat(storedValue, `is`(notNullValue()))
+                assertThat(storedValue, equalTo(detailBean))
+            }
         }
-        assertThat(storedObjectBeanMain.data, `is`(equalTo(objectBeanMain.data)))
+        assertThat(storedObjectBeanMain?.data, `is`(equalTo(objectBeanMain.data)))
     }
 
 }

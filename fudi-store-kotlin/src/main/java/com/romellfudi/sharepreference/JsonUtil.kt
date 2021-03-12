@@ -19,16 +19,13 @@ class JsonUtil {
 
     companion object {
         @Throws(Exception::class)
-        internal fun toJson(var0: Any, var1: Boolean): String {
+        internal fun toJson(var0: Any?, var1: Boolean): String {
             val jsonFactory = JsonFactory()
             val objMapper = ObjectMapper()
-
             val var2 = StringWriter()
             val var3 = jsonFactory.createJsonGenerator(var2)
-            if (var1) {
+            if (var1)
                 var3.useDefaultPrettyPrinter()
-            }
-
             objMapper.writeValue(var3, var0)
             return var2.toString()
         }
@@ -71,7 +68,6 @@ class JsonUtil {
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-
             return json
         }
     }
