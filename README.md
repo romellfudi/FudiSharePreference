@@ -45,20 +45,27 @@ public class ObjectBean {
     ...
 }
 ```
+```kotlin
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class Class(var state: Boolean=false,
+                            var value: Int=-1,
+                            var valueDouble: Double=0.0,
+                            var details: ArrayList<String>?=null)
+```
 
 In case attributes don't have setter method, the reference stores `null`value
-
-Save a singleton object:
-
-```java
-SharePreferenced.save(myObjectClass,MyClass.class);
- ```
 
 Save different objects:
 
 ```java
 SharePreferenced.save(myObjectClass,MyClass.class,"OBJ1");
  ```
+```kotlin
+var Object: Class?
+    get() = SharePreferenced.load(Class::class.java,"OBJ")
+    set(it) =
+        SharePreferenced.save(it, Class::class.java,"OBJ")
+```
 
 ### License
 ```

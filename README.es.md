@@ -41,20 +41,26 @@ public class ObjectBean {
     ...
 }
 ```
-
+```kotlin
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class Class(var state: Boolean=false,
+                            var value: Int=-1,
+                            var valueDouble: Double=0.0,
+                            var details: ArrayList<String>?=null)
+```
 En caso los atributos no tengan métodos, se referenciará un valor ``nulo
-
-Almacenando un objeto genérico de un clase:
-
-```java
-SharePreferenced.save(myObjectClass,MyClass.class);
- ```
 
 Almacenando distintas instancias de una clase:
 
 ```java
 SharePreferenced.save(myObjectClass,MyClass.class,"OBJ1");
  ```
+```kotlin
+var Object: Class?
+    get() = SharePreferenced.load(Class::class.java,"OBJ")
+    set(it) =
+        SharePreferenced.save(it, Class::class.java,"OBJ")
+```
 
 ### License
 ```
