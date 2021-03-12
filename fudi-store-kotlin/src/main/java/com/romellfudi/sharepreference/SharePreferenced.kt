@@ -11,66 +11,40 @@ import android.content.Context
  */
 object SharePreferenced {
 
-    private var mContext: Context? = null
+    private lateinit var mContext: Context
     private var SESSION: String? = null
 
     fun init(context: Context) {
         mContext = context
-        SESSION = mContext!!.packageName + ".SHARED_PREFERENCE_SESSION"
+        SESSION = mContext.packageName + ".SHARED_PREFERENCE_SESSION"
     }
 
-    private fun setSharedPreference(context: Context?, key: String, value: String?) {
-        var value = value
-        if (value == null)
-            value = ""
-        with(context!!.getSharedPreferences(
-                SESSION, Context.MODE_PRIVATE).edit()) {
-            putString(key, value)
-            commit()
-        }
+    private fun setSharedPreference(context: Context, key: String, value: String?) =
+            with(context.getSharedPreferences(
+                    SESSION, Context.MODE_PRIVATE).edit()) {
+                putString(key, value ?: "")
+                commit()
+            }
+
+    private fun getSharedPreference(context: Context, value: String): String? =
+            context.getSharedPreferences(
+                    SESSION, Context.MODE_PRIVATE).let { it.getString(value, "") }
+
+    fun save(any: Any?, cls: Class<*>) {
+        setSharedPreference(mContext, cls.simpleName, JsonUtil.toJson(any, false))
     }
 
-    private fun getSharedPreference(context: Context, value: String): String? {
-        val sharedPref = context.getSharedPreferences(
-                SESSION, Context.MODE_PRIVATE)
-        return sharedPref.getString(value, "")
+    fun <T> load(cls: Class<T>): T? = getSharedPreference(mContext, cls.simpleName)?.let {
+        cls.cast(JsonUtil.fromJson(it, cls))
     }
 
-    fun save(any: Any, cls: Class<*>) {
-        var json = ""
-        try {
-            json = JsonUtil.toJson(any, false)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        setSharedPreference(mContext, cls.simpleName, json)
+    fun save(any: Any?, cls: Class<*>, tag: String) {
+        setSharedPreference(mContext, cls.simpleName + tag, JsonUtil.toJson(any, false))
     }
 
-    fun <T> load(cls: Class<T>): T? {
-        val json = getSharedPreference(mContext!!, cls.simpleName)
-        var any: Any? = null
-        if (json != "")
-            any = JsonUtil.fromJson(json!!, cls)
-        return cls.cast(any)
-    }
-
-    fun save(any: Any, cls: Class<*>, TAG: String) {
-        var json = ""
-        try {
-            json = JsonUtil.toJson(any, false)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        setSharedPreference(mContext, cls.simpleName + TAG, json)
-    }
-
-    fun <T> load(cls: Class<T>, tag: String): T? {
-        val json = getSharedPreference(mContext!!, cls.simpleName + tag)
-        var any: Any? = null
-        if (json != "")
-            any = JsonUtil.fromJson(json!!, cls)
-        return cls.cast(any)
-    }
-
+    fun <T> load(cls: Class<T>, tag: String): T? =
+            getSharedPreference(mContext, cls.simpleName + tag)?.let {
+                cls.cast(JsonUtil.fromJson(it, cls))
+            }
 
 }
