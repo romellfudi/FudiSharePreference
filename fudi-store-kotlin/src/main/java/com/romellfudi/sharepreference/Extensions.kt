@@ -19,39 +19,49 @@ import android.annotation.SuppressLint
 
 @SuppressLint("NewApi")
 inline fun <reified T : Any> T.load() {
-    (T::class.java.annotations.find { it is Fudi } as? Fudi)?.let {
-        var obj = SharePreferenced.load(T::class.java)
-        val t = T::class.java.constructors
-        var empty = T::class.java.constructors.first { it.parameterCount==0 }.newInstance() as T
-        for (a in T::class.java.declaredFields) {
-            a.isAccessible = true
-            a.set(this, a.get(obj ?: empty))
+    if (T::class.isData)
+        (T::class.annotations.find { it is Fudi } as? Fudi)?.let {
+            val obj = SharePreferenced.load(T::class.java)
+            val empty = T::class.java.constructors
+                    .first { it.parameterCount == 0 }.newInstance()
+            T::class.java.declaredFields.forEach {
+                it.isAccessible = true
+                it.set(this,it.get(obj ?: empty))
+            }
         }
-    }
 }
 
+@SuppressLint("NewApi")
 inline fun <reified T : Any> T.load(tag: String = "tag") {
-    (T::class.java.annotations.find { it is Fudi } as? Fudi)?.let {
-        var obj = SharePreferenced.load(T::class.java, tag)
-        var empty = T::class.java.constructors[0].newInstance() as T
-        for (a in T::class.java.declaredFields) {
-            a.isAccessible = true
-            a.set(this, a.get(obj ?: empty))
+    if (T::class.isData)
+        (T::class.annotations.find { it is Fudi } as? Fudi)?.let {
+            val obj = SharePreferenced.load(T::class.java, tag)
+            val empty = T::class.java.constructors
+                    .first { it.parameterCount == 0 }.newInstance()
+            T::class.java.declaredFields.forEach {
+                it.isAccessible = true
+                it.set(this,it.get(obj ?: empty))
+            }
         }
-    }
 }
 
-inline fun <reified T : Any> T.clear() =
-        (T::class.java.annotations.find { it is Fudi } as? Fudi)?.let {
+inline fun <reified T : Any> T.clear() {
+    if (T::class.isData)
+        (T::class.annotations.find { it is Fudi } as? Fudi)?.let {
             SharePreferenced.save(null, T::class.java)
         }
+}
 
-inline fun <reified T : Any> T.save() =
-        (T::class.java.annotations.find { it is Fudi } as? Fudi)?.let {
+inline fun <reified T : Any> T.save() {
+    if (T::class.isData)
+        (T::class.annotations.find { it is Fudi } as? Fudi)?.let {
             SharePreferenced.save(this, T::class.java)
         }
+}
 
-inline fun <reified T : Any> T.saveTag(tag: String = "tag") =
-        (T::class.java.annotations.find { it is Fudi } as? Fudi)?.let {
+inline fun <reified T : Any> T.saveTag(tag: String = "tag") {
+    if (T::class.isData)
+        (T::class.annotations.find { it is Fudi } as? Fudi)?.let {
             SharePreferenced.save(this, T::class.java, tag)
         }
+}

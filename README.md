@@ -34,7 +34,8 @@ dependencies {
 
 ### How implement
 
-Your class tag with JsonIgnoreProperties annotation and implements set & get:
+Your class tag with JsonIgnoreProperties annotation and implements set & get.
+Note: In kotlin language you must add the Annotation @Fudi on your data class, otherwise the extensions (`save`, `load` `clear`) would be ignored:
 
 ```java
 @JsonIgnoreProperties(ignoreUnknown = true)

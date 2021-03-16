@@ -16,7 +16,7 @@ ext {
     siteUrl = 'https://github.com/romellfudi/FudiSharePreference'
     gitUrl = 'https://github.com/romellfudi/FudiSharePreference.git'
 
-    libraryVersion = '1.1.a'
+    libraryVersion = '1.1.b'
 
     developerId = 'romellfudi'
     developerName = 'Romell Dominguez'
@@ -34,7 +34,7 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 1
+        versionCode 2
         versionName "1.1.a"
 
     }
