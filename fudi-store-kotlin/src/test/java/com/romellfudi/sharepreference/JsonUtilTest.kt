@@ -13,6 +13,8 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import com.romellfudi.sharepreference.resources.NonAnnotation
+import com.romellfudi.sharepreference.resources.NonDataClass
 import com.romellfudi.sharepreference.resources.ObjectBean
 import com.romellfudi.sharepreference.resources.ObjectDetailBean
 import io.mockk.MockKAnnotations
@@ -67,12 +69,49 @@ class JsonUtilTest {
 
     @Test
     @Throws(Exception::class)
+    fun nonAnnotationTest() {
+        val nonAnnotationBean = NonAnnotation("234")
+                .apply {
+                    name = "fudi"
+                    details = arrayListOf("hello", "wait", "bye")
+                }
+        assertThat(nonAnnotationBean::class.isData, `is`(true))
+        assertThat(nonAnnotationBean::class.annotations.find { it is Fudi } as? Fudi,
+                `is`(nullValue()))
+        nonAnnotationBean.save()
+        val storedValue = NonAnnotation()
+        storedValue.load()
+        assertThat(storedValue == nonAnnotationBean, `is`(false))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun nonDataClassTest() {
+        val nonDataClass = NonDataClass("234")
+                .apply {
+                    name = "fudi"
+                    details = arrayListOf("hello", "wait", "bye")
+                }
+        assertThat(nonDataClass::class.isData, `is`(false))
+        assertThat(nonDataClass::class.annotations.find { it is Fudi } as? Fudi,
+                `is`(notNullValue()))
+        nonDataClass.save()
+        val storedValue = NonDataClass()
+        storedValue.load()
+        assertThat(storedValue == nonDataClass, `is`(false))
+    }
+
+    @Test
+    @Throws(Exception::class)
     fun testSimpleObjectToJson() {
         val objectDetailBean = ObjectDetailBean("234")
                 .apply {
                     name = "fudi"
                     details = arrayListOf("hello", "wait", "bye")
                 }
+        assertThat(objectDetailBean::class.isData, `is`(true))
+        assertThat(objectDetailBean::class.annotations.find { it is Fudi } as? Fudi,
+                `is`(notNullValue()))
         objectDetailBean.save()
         verify { editor.putString(capture(keyCaptor), capture(JSONvalueCaptor)) }
         val storedValue = ObjectDetailBean()
@@ -91,6 +130,7 @@ class JsonUtilTest {
                 name = "id-$it"
                 details = arrayListOf("aa", "bbbb", "c")
             }
+            assertThat(detailBean::class.isData, `is`(true))
             detailBean.save()
             verify(exactly = it + 1) {
                 editor.putString(capture(keyCaptor), capture(JSONvalueCaptor))
@@ -99,9 +139,13 @@ class JsonUtilTest {
             storedValue.load()
             assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue()))
             assertThat(storedValue, equalTo(detailBean))
-            detailBeans.add(storedValue!!)
+            detailBeans.add(storedValue)
         }
         val objectBeanMain = ObjectBean("Main")
+        assertThat(objectBeanMain::class.isData, `is`(true))
+        assertThat(objectBeanMain::class.annotations.find { it is Fudi } as? Fudi,
+                `is`(notNullValue()))
+
         objectBeanMain.save()
 
         verify(exactly = detailBeans.size + 1) {
@@ -111,13 +155,10 @@ class JsonUtilTest {
         storedObjectBeanMain.load()
 
         assertThat(storedObjectBeanMain, `is`(notNullValue()))
-        storedObjectBeanMain.objectDetailBeans?.size?.let { size ->
-            (0 until size).forEach { i ->
-                val storedValue = storedObjectBeanMain.objectDetailBeans!![i]
-                val detailBean = detailBeans[i]
-                assertThat(storedValue, `is`(notNullValue()))
-                assertThat(storedValue, equalTo(detailBean))
-            }
+        storedObjectBeanMain.objectDetailBeans?.forEachIndexed { index, objectDetailBean ->
+            assertThat(objectDetailBean, `is`(notNullValue()))
+            assertThat(detailBeans[index], `is`(notNullValue()))
+            assertThat(objectDetailBean, equalTo(detailBeans[index]))
         }
         assertThat(storedObjectBeanMain.data, `is`(equalTo(objectBeanMain.data)))
     }
