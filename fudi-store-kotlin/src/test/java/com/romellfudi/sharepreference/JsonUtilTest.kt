@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021. BoostTag E.I.R.L. Romell D.Z.
+ * All rights reserved
+ * portfolio.romellfudi.com
+ */
+
 package com.romellfudi.sharepreference
 
 import android.content.Context
@@ -67,12 +73,13 @@ class JsonUtilTest {
                     name = "fudi"
                     details = arrayListOf("hello", "wait", "bye")
                 }
-        SessionObj.objectDetailBeanCurrent = objectDetailBean
+        objectDetailBean.save()
         verify { editor.putString(capture(keyCaptor), capture(JSONvalueCaptor)) }
-        val storedValue = SessionObj.objectDetailBeanCurrent
+        val storedValue = ObjectDetailBean()
+        storedValue.load()
+        assertThat<ObjectDetailBean>(objectDetailBean, `is`(notNullValue()))
         assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue()))
         assertThat(storedValue, equalTo(objectDetailBean))
-
     }
 
     @Test
@@ -84,26 +91,27 @@ class JsonUtilTest {
                 name = "id-$it"
                 details = arrayListOf("aa", "bbbb", "c")
             }
-            SessionObj.objectDetailBeanCurrent = detailBean
+            detailBean.save()
             verify(exactly = it + 1) {
                 editor.putString(capture(keyCaptor), capture(JSONvalueCaptor))
             }
-            val storedValue = SessionObj.objectDetailBeanCurrent
+            val storedValue = ObjectDetailBean()
+            storedValue.load()
             assertThat<ObjectDetailBean>(storedValue, `is`(notNullValue()))
             assertThat(storedValue, equalTo(detailBean))
             detailBeans.add(storedValue!!)
         }
         val objectBeanMain = ObjectBean("Main")
-        objectBeanMain.objectDetailBeans = detailBeans
+        objectBeanMain.save()
 
-        SessionObj.currentObject(objectBeanMain)
         verify(exactly = detailBeans.size + 1) {
             editor.putString(capture(keyCaptor), capture(JSONvalueCaptor))
         }
-        val storedObjectBeanMain = SessionObj.currentObject()
+        val storedObjectBeanMain = ObjectBean("Main")
+        storedObjectBeanMain.load()
 
         assertThat(storedObjectBeanMain, `is`(notNullValue()))
-        storedObjectBeanMain?.objectDetailBeans?.size?.let { size ->
+        storedObjectBeanMain.objectDetailBeans?.size?.let { size ->
             (0 until size).forEach { i ->
                 val storedValue = storedObjectBeanMain.objectDetailBeans!![i]
                 val detailBean = detailBeans[i]
@@ -111,7 +119,7 @@ class JsonUtilTest {
                 assertThat(storedValue, equalTo(detailBean))
             }
         }
-        assertThat(storedObjectBeanMain?.data, `is`(equalTo(objectBeanMain.data)))
+        assertThat(storedObjectBeanMain.data, `is`(equalTo(objectBeanMain.data)))
     }
 
 }

@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021. BoostTag E.I.R.L. Romell D.Z.
+ * All rights reserved
+ * portfolio.romellfudi.com
+ */
+
 package com.romellfudi.sharepreferencesample
 
 import android.app.Application

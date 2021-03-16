@@ -42,6 +42,7 @@ public class ObjectBean {
 }
 ```
 ```kotlin
+@Fudi
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Class(var state: Boolean=false,
                             var value: Int=-1,
@@ -56,10 +57,11 @@ Almacenando distintas instancias de una clase:
 SharePreferenced.save(myObjectClass,MyClass.class,"OBJ1");
  ```
 ```kotlin
-var Object: Class?
-    get() = SharePreferenced.load(Class::class.java,"OBJ")
-    set(it) =
-        SharePreferenced.save(it, Class::class.java,"OBJ")
+// Using extensions & @Fudi 
+val dataObject = Class(false,65,8.9,0,arrayListOf("hello", "wait", "bye"))
+dataObject.save(tag="optional") // storage data
+dataObject.load(tag="optional") // restore data or returns default object
+dataObject.clear()
 ```
 
 ### License
