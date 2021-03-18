@@ -19,6 +19,7 @@ jobs:
         java-version: 1.8
     - name: Build App with Gradle
       run: ./gradlew assembleDebug
+      
     - name: Testing fudi-store
       run: ./gradlew assembleDebug lint testDebugUnitTest -p fudi-store
     - name: Upload Testing fudi-store
@@ -31,6 +32,7 @@ jobs:
       with:
         name: fudi-store-aar
         path: fudi-store/build/outputs/aar/fudi-store-debug.aar
+        
     - name: Testing fudi-store-kotlin
       run: ./gradlew assembleDebug lint testDebugUnitTest -p fudi-store-kotlin
     - name: Upload Testing fudi-storekotlin
@@ -43,10 +45,12 @@ jobs:
       with:
         name: fudi-store-kotlin-aar
         path: fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar 
+        
     - name: Rename aar java
       run: mv fudi-store/build/outputs/aar/fudi-store-debug.aar fudi-store.aar
     - name: Rename aar kotlin
       run: mv fudi-store-kotlin/build/outputs/aar/fudi-store-kotlin-debug.aar fudi-store-kotlin.aar
+      
     - name: Upload Assets
       uses: meeDamian/github-release@2.0
       with:
@@ -54,6 +58,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
         name: Latest Relese
+        gzip: false
         body: >
           This release actually.  
         files: >
