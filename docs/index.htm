@@ -3,7 +3,7 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
-  <link rel="shortcut icon" href="https://raw.githubusercontent.com/romellfudi/assets/master/favicon.ico" />
+  
   <title>FudiSharePreference Tutorial</title>
   <link rel="stylesheet" href="./index_files/css">
   <link rel="stylesheet" href="./index_files/icon">
@@ -17,13 +17,13 @@
       color: red;
     }
   </style>
-<style></style></head>
+</head>
 <body class="vsc-initialized">
   <google-codelab id="https://github.com/romellfudi/FudiSharePreference" environment="web" feedback-link="https://github.com/romellfudi/FudiSharePreference/issues" selected="0" google-codelab-ready="" codelab-title="FudiSharePreference Tutorial"><div id="drawer"><div class="codelab-time-container" style="display: none;"></div><div class="steps"><ol><li completed="" selected=""><a href="#0"><span class="step"><span>Introduction</span></span></a></li><li><a href="#1"><span class="step"><span>Setting up</span></span></a></li><li><a href="#2"><span class="step"><span>Implementation</span></span></a></li><li><a href="#3"><span class="step"><span>License</span></span></a></li></ol></div><div class="metadata"><a target="_blank" href="https://github.com/romellfudi/FudiSharePreference/issues"><i class="material-icons">bug_report</i> Report a mistake</a></div></div><div id="codelab-title"><div id="codelab-nav-buttons"><a href="https://codelabs-preview.appspot.com/" id="arrow-back"><i class="material-icons">close</i></a><a href="#" id="menu"><i class="material-icons">menu</i></a></div><h1 is-upgraded="" class="title">FudiSharePreference Tutorial</h1><div class="codelab-time-container" style="display: none;"></div><devsite-user></devsite-user></div><div id="main"><div id="steps"><google-codelab-step label="Introduction" duration="0" step="1" style="transform: translate3d(0px, 0px, 0px);" selected=""><h2 is-upgraded="" class="step-title">1. Introduction</h2>
         <p class="image-container"><img style="width: 624.00px" src="./index_files/background.png"></p>
 <h2 is-upgraded="">Target &amp; How setup</h2>
 <p>This is a tutorial for introducing a how to save and how to load any object in your Android Project, First at all, need add the dependency repository and library into your gradle files:</p>
-<p>Please replace the following <code>latestVersion</code> annotation with latest <img src="https://img.shields.io/bintray/v/romllz489/maven/fudi-store.svg"> version </p>
+<p>Please replace <code>latestVersion</code> annotation with the latest  <a href="https://bintray.com/romllz489/maven/kotlin-fudi-store" target="_blank"><paper-button class="colored" raised="">bintray</paper-button></a>  version </p>
 <pre><code><span class="pln">repositories </span><span class="pun">{</span><span class="pln">
     jcenter</span><span class="pun">()</span><span class="pln">
 </span><span class="pun">}</span><span class="pln">
@@ -39,7 +39,7 @@ dependencies </span><span class="pun">{</span><span class="pln">
 </aside>
 
 
-      </div></div></google-codelab-step><google-codelab-step label="Setting up" duration="0" step="2"><h2 is-upgraded="" class="step-title">2. Setting up</h2>
+      </div></div></google-codelab-step><google-codelab-step label="Setting up" duration="0" step="2" style="transform: translate3d(-110%, 0px, 0px);"><h2 is-upgraded="" class="step-title">2. Setting up</h2>
         <p>To start you  need a code with interfaces classes or adapter patterns.</p>
 <h2 is-upgraded=""><strong>Download the Code</strong></h2>
 <p>Click the following link to download all the code for this tutorial:</p>
@@ -57,9 +57,9 @@ dependencies </span><span class="pun">{</span><span class="pln">
 </ul>
 
 
-      </div></div></google-codelab-step><google-codelab-step label="Implementation" duration="0" step="3" style="transform: translate3d(-110%, 0px, 0px);"><h2 is-upgraded="" class="step-title">3. Implementation</h2>
+      </div></div></google-codelab-step><google-codelab-step label="Implementation" duration="0" step="3" style="transform: translate3d(110%, 0px, 0px);"><h2 is-upgraded="" class="step-title">3. Implementation</h2>
         <h2 is-upgraded=""><strong>Add annotations:</strong></h2>
-<p>  Your class tag with JsonIgnoreProperties annotation and implements set &amp; get: :</p>
+<p>  Your class tag with JsonIgnoreProperties annotation and implements set &amp; get. Note: In kotlin language you must add the Annotation @Fudi on your data class, otherwise the extensions (save, load clear) would be ignored:</p>
 <pre><code><span class="lit">@JsonIgnoreProperties</span><span class="pun">(</span><span class="pln">ignoreUnknown </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">)</span><span class="pln">
 </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ObjectBean</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
     </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> data</span><span class="pun">;</span><span class="pln">
@@ -67,16 +67,27 @@ dependencies </span><span class="pun">{</span><span class="pln">
     </span><span class="com">// need getters</span><span class="pln">
     </span><span class="pun">...</span><span class="pln">
 </span><span class="pun">}</span></code></pre>
+<pre><code><span class="lit">@Fudi</span><span class="pln">
+</span><span class="lit">@JsonIgnoreProperties</span><span class="pun">(</span><span class="pln">ignoreUnknown </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">)</span><span class="pln">
+data </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Class</span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> state</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Boolean</span><span class="pun">=</span><span class="kwd">false</span><span class="pun">,</span><span class="pln">
+                            </span><span class="kwd">var</span><span class="pln"> </span><span class="kwd">value</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Int</span><span class="pun">=-</span><span class="lit">1</span><span class="pun">,</span><span class="pln">
+                            </span><span class="kwd">var</span><span class="pln"> valueDouble</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Double</span><span class="pun">=</span><span class="lit">0.0</span><span class="pun">,</span><span class="pln">
+                            </span><span class="kwd">var</span><span class="pln"> details</span><span class="pun">:</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">ObjectDetailBean</span><span class="pun">&gt;?=</span><span class="kwd">null</span><span class="pun">)</span></code></pre>
 <p>In case attributes, they don't have to set a method, the reference stores <code>null value.</code></p>
 <p>Save a singleton object: </p>
 <pre><code><span class="typ">SharePreferenced</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="pln">myObjectClass</span><span class="pun">,</span><span class="typ">MyClass</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">);</span></code></pre>
 <p>Now, Save different objects by <code>unique id tag</code>:</p>
 <pre><code><span class="typ">SharePreferenced</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="pln">myObjectClass</span><span class="pun">,</span><span class="typ">MyClass</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">,</span><span class="str">"OBJ1"</span><span class="pun">);</span></code></pre>
+<pre><code><span class="com">// Using extensions &amp; @Fudi </span><span class="pln">
+val dataObject </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Class</span><span class="pun">(</span><span class="kwd">false</span><span class="pun">,</span><span class="lit">65</span><span class="pun">,</span><span class="lit">8.9</span><span class="pun">,</span><span class="lit">0</span><span class="pun">,</span><span class="pln">arrayListOf</span><span class="pun">(</span><span class="str">"hello"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"wait"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"bye"</span><span class="pun">))</span><span class="pln">
+dataObject</span><span class="pun">.</span><span class="pln">save</span><span class="pun">(</span><span class="pln">tag</span><span class="pun">=</span><span class="str">"optional"</span><span class="pun">)</span><span class="pln"> </span><span class="com">// storage data</span><span class="pln">
+dataObject</span><span class="pun">.</span><span class="pln">load</span><span class="pun">(</span><span class="pln">tag</span><span class="pun">=</span><span class="str">"optional"</span><span class="pun">)</span><span class="pln"> </span><span class="com">// restore data or returns default object</span><span class="pln">
+dataObject</span><span class="pun">.</span><span class="pln">clear</span><span class="pun">()</span></code></pre>
 <aside class="special"><p>Great, it's already to be run on any device or emulator.</p>
 </aside>
 
 
-      </div></div></google-codelab-step><google-codelab-step label="License" duration="0" step="4" style="transform: translate3d(110%, 0px, 0px);"><h2 is-upgraded="" class="step-title">4. License</h2>
+      </div></div></google-codelab-step><google-codelab-step label="License" duration="0" step="4"><h2 is-upgraded="" class="step-title">4. License</h2>
         <h2 is-upgraded=""><strong>by Romell Domínguez</strong></h2>
 <p class="image-container"><img style="width: 287.00px" src="./index_files/icono.png"></p>
 <p>Copyright 2016 Romell D.Z.</p>
@@ -87,7 +98,7 @@ dependencies </span><span class="pun">{</span><span class="pln">
 <p>See the License for the specific language governing permissions and limitations under the License.</p>
 
 
-      </div></div></google-codelab-step></div><div id="controls"><div id="fabs"><a href="#" id="previous-step" title="Previous step" disappear="">Back</a><div class="spacer"></div><a href="#" id="next-step" title="Next step">Next</a><a href="https://codelabs-preview.appspot.com/" id="done" title="Codelab complete" hidden="">Done</a></div></div></div></google-codelab>
+      </div></div></google-codelab-step></div><div id="controls"><div id="fabs"><a href="#" id="previous-step" title="Previous step" disappear="">Back</a><div class="spacer"></div><a href="#" id="next-step" title="Next step">Next</a><a href="https://codelabs-preview.appspot.com/" id="done" hidden="" title="Codelab complete">Done</a></div></div></div></google-codelab>
 
   <script async="">
     document.addEventListener("DOMContentLoaded", function() {
