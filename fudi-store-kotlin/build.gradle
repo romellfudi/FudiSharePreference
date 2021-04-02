@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
 
 ext {
@@ -58,17 +58,19 @@ android {
 }
 
 dependencies {
-    implementation group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.7.7'
+    implementation 'org.codehaus.jackson:jackson-mapper-asl:1.7.7'
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'org.reflections:reflections:0.9.10'
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-all:1.10.19'
     testImplementation 'org.powermock:powermock-module-junit4:1.6.2'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
     testImplementation 'org.powermock:powermock-api-mockito:1.6.2'
     testImplementation 'io.mockk:mockk:1.9.3'
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply from: 'https://raw.githubusercontent.com/romellfudi/assets/bintray/artifactory_bintray.gradle'

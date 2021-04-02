@@ -7,7 +7,7 @@ android {
     buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.romellfudi.sharepreferencesample"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 2
         versionName "1.1.a"
@@ -34,9 +34,18 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:28.+'
-    implementation group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.7.7'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':fudi-store-kotlin')
-//    implementation 'com.romellfudi.store:kotlin-fudi-store:1.0.b'
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'org.codehaus.jackson:jackson-mapper-asl:1.7.7'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+
+    implementation "org.koin:koin-android:$koin"
+    implementation "org.koin:koin-androidx-viewmodel:$koin"
+
 }
