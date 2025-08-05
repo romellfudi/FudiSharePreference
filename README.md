@@ -1,4 +1,4 @@
-![Gemini_Generated_Image_c6ozd4c6ozd4c6oz](https://github.com/user-attachments/assets/c33efe57-1ead-46b1-8732-c1838d1f9820)
+![Gemini_Generated_Image_1w4dur1w4dur1w4d](https://github.com/user-attachments/assets/76d9410d-3361-4ba0-bd44-036eaabfac05)
 
  [![platform](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://developer.android.com/index.html)
  [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17)
